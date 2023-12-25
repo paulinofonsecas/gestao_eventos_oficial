@@ -18,7 +18,7 @@ class CategoriaUseCase extends ICategoriaUseCases {
   }
 
   @override
-  Future<Categoria?> getCategoria(int id) {
+  Future<Categoria?> getCategoria(String id) {
     return _repository.getCategoria(id);
   }
 

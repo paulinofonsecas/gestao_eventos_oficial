@@ -34,11 +34,11 @@ class FirebaseEventoDataSource implements IEventoDataSource {
   }
 
   @override
-  Future<EventoModel?> getEvento(int id) async {
+  Future<EventoModel?> getEvento(String id) async {
     try {
       final result = await _firestore
           .collection(_collectionName)
-          .doc(id.toString())
+          .doc(id)
           .get()
           .then((doc) async {
         final categoria = await _categoriaDataSource.getCategoria(
