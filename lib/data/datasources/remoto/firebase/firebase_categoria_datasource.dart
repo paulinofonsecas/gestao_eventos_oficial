@@ -5,12 +5,9 @@ import 'package:gestao_eventos/data/models/categoria_model.dart';
 class FirebaseCategoriaDataSource implements ICategoriaDataSource {
   FirebaseCategoriaDataSource({
     required FirebaseFirestore firestore,
-    required ICategoriaDataSource categoriaDataSource,
-  })  : _firestore = firestore,
-        _categoriaDataSource = categoriaDataSource;
+  }) : _firestore = firestore;
 
   final FirebaseFirestore _firestore;
-  final ICategoriaDataSource _categoriaDataSource;
   final String _collectionName = 'categorias';
 
   @override
@@ -40,12 +37,6 @@ class FirebaseCategoriaDataSource implements ICategoriaDataSource {
           .doc(id)
           .get()
           .then((doc) async {
-        final categoria = await _categoriaDataSource.getCategoria(
-          doc.data()!['categoriaId'] as String,
-        );
-
-        doc.data()!['categoria'] = categoria;
-
         return CategoriaModel.fromMap(doc.data()!);
       });
 
